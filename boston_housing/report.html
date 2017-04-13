@@ -11806,7 +11806,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Import libraries necessary for this project</span>
@@ -11880,23 +11880,23 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Minimum price of the data</span>
-<span class="n">minimum_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<span class="n">minimum_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># TODO: Maximum price of the data</span>
-<span class="n">maximum_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">maximum_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># TODO: Mean price of the data</span>
-<span class="n">mean_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">mean_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># TODO: Median price of the data</span>
-<span class="n">median_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+<span class="n">median_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># TODO: Standard deviation of prices of the data</span>
-<span class="n">std_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="n">std_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># Show the calculated statistics</span>
 <span class="k">print</span> <span class="s2">&quot;Statistics for Boston housing dataset:</span><span class="se">\n</span><span class="s2">&quot;</span>
@@ -11925,7 +11925,7 @@ Minimum price: $105,000.00
 Maximum price: $1,024,800.00
 Mean price: $454,342.94
 Median price $438,900.00
-Standard deviation of prices: $165,340.28
+Standard deviation of prices: $165,171.13
 </pre>
 </div>
 </div>
@@ -13246,7 +13246,7 @@ TkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer: </strong> For the model with max_depth = 6, the R2 score of the training curve decreases slightly as more training points are added. The opposite happens with the testing curve. As more points are used to train the model, the R2 score of the testing set increases, meaning that the model is more accurate with more training data. Both curves seem as if they are starting to converge, possibly at a R2 score higher than 0.8. More data points will definitey benefit the model with a max_depth of 6 since it is currently overfitting the data with the training set provided.</p>
+<p><strong>Answer: </strong> For the model with max_depth = 3, the R2 score of the training curve decreases slightly as more training points are added. The opposite happens with the testing curve. As more points are used to train the model, the R2 score of the testing set increases, meaning that the model is more accurate with more training data. Both curves converge at an R2 score of approximately 0.8. More data points will not benefit the model with a max_depth of 3 since it has already converged with the training set provided.</p>
 
 </div>
 </div>
@@ -13737,6 +13737,8 @@ M8YYEzYs6RljjAkblvSMMcaEjf8H6UiYYx6RgokAAAAASUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong> The grid search technique is a way to try multiple combinations of parameters and learning algorithms over the same set of data. It can also cross validate the models by using mutiple splits of data, such as it is done with kFolds. The result of the grid search is the combination of parameters that will best model the data.</p>
+<p>Each parameter combination will be trained an tested, one at a time, making this process more costly than just training one model.</p>
+<p>The grid search technique also takes a scorer function as one of its parameters, such as an R2 or an F1 score, that will determine the accuracy of each of the combinations tested in order to determine which is best.</p>
 
 </div>
 </div>
@@ -13757,7 +13759,8 @@ M8YYEzYs6RljjAkblvSMMcaEjf8H6UiYYx6RgokAAAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer: </strong> The kFolds training technique will split the data into k train-test splits. In each iteration, the sum of test and train data points equals the total amount of data points, but they are split in different proportions, more specifically in multiples of [total data]/k (if k is 10, the train test splits could be in the following proportions [1/10,9/10],[2/10,8/10] etc). Using kFolds with grid search allows the user to create k more combinations to test while optimizing the parameters that best fit the data. If cross validation is not used during a grid search, there will be no way of testing the models against unseen data and therefore it predicting its accuracy at modeling future data is much more difficult.</p>
+<p><strong>Answer: </strong> The kFolds training technique will split the data into k bins where 1/k of the bins will be used for testing and (k-1)/k bins will be used for training the model. The training and testing of the model will be performed k times, using a different bin as the test sample each time. The results will be averaged to give an overall training and testing performance.</p>
+<p>The benefit of using the kFolds technique for cross validation when using grid search to optimize a model is that every single data point is used for testing and training in each of the combinations being explored. This prevents ending up with a model that has been trained with data that is not representative of the whole set. In other words, it generalizes the model better than if it were trained without using a cross validation technique.</p>
 
 </div>
 </div>
@@ -13794,7 +13797,7 @@ For the <code>fit_model</code> function in the code cell below, you will need to
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[43]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Import &#39;make_scorer&#39;, &#39;DecisionTreeRegressor&#39;, and &#39;GridSearchCV&#39;</span>
@@ -13808,7 +13811,7 @@ For the <code>fit_model</code> function in the code cell below, you will need to
 <span class="sd">        decision tree regressor trained on the input data [X, y]. &quot;&quot;&quot;</span>
     
     <span class="c1"># Create cross-validation sets from the training data</span>
-    <span class="n">cv_sets</span> <span class="o">=</span> <span class="n">ShuffleSplit</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">n_iter</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.20</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">cv_sets</span> <span class="o">=</span> <span class="n">ShuffleSplit</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">n_iter</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.20</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">420</span><span class="p">)</span>
 
     <span class="c1"># TODO: Create a decision tree regressor object</span>
     <span class="n">regressor</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">()</span>
@@ -13983,7 +13986,8 @@ Predicted selling price for Client 3&#39;s home: $1,021,650.00
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer: </strong> Suggested selling price for Client 1's home: USD 426,444.83. Suggested selling price for Client 2's home: USD 211,292.31. Suggested selling price for Client 3's home: USD 1,021,650.00. The predictions make sence. The largest house with the least amount of lower class neighbors and the lowest ratio of students to teachers at the local school had the highest estimated value while the smallest house with the most amount of lower class neighbors and the highest ratio of students to teachers at the local school had the lowest estimated value.</p>
+<p><strong>Answer: </strong> Suggested selling price for Client 1's home: USD 426,444.83. Suggested selling price for Client 2's home: USD 211,292.31. Suggested selling price for Client 3's home: USD 1,021,650.00. The predictions make sence. The largest house with the least amount of lower class neighbors and the lowest ratio of students to teachers at the local school had the highest estimated value while the smallest house with the most amount of lower class neighbors and the highest ratio of students to teachers at the local school had the lowest estimated value. The medium sized house, with parameters closer in similarity to the small house, was given a price estimate between the other houses, closer to the smaller house.</p>
+<p>These predictions are in line with the data's measures of central tendency. The medium sized house's price is very close to the mean and median house prices previously calculated. The large house is close to the maximum house value presented in the dataset and the small house has a value close to the minimum house value. All predicted house values fall within the range of house values in the dataset.</p>
 
 </div>
 </div>
